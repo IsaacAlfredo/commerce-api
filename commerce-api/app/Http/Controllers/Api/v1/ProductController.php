@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::select('id','name', 'price', 'stock')->get();
+        return Product::select('id','name', 'price', 'stock', 'category')->get();
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        return Product::select('id','name', 'price', 'stock')->find($id);
+        return Product::select('id','name', 'price', 'stock','category')->find($id);
     }
 
     /**

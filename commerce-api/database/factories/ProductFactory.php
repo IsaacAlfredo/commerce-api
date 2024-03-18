@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
+
     /**
      * Define the model's default state.
      *
@@ -18,8 +19,9 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'price' => fake()->numerify('####'),
-            'stock' => fake()->numerify('###')
+            'price' => fake()->randomFloat(2,500,9999),
+            'stock' => fake()->numerify('###'),
+            'category' => fake()->randomElement(['notebook', 'mobile', 'desktop'])
         ];
     }
 }
