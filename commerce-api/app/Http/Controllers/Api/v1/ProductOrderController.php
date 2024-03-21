@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \App\Models\Order;
+use \App\Models\ProductOrder;
 
-class OrderController extends Controller
+class ProductOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Order::select('id','user_id','user_name','address','cardNumber','cardValidity','cardSecurityCode')->get();
+        return ProductOrder::select('id')->get();
     }
 
     /**
@@ -29,15 +29,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = new Order();
-        $order->user_name = $request->input('user_name');
-        $order->address = $request->input('address');
-        $order->cardNumber = $request->input('cardNumber');
-        $order->cardValidity = $request->input('cardValidity');
-        $order->cardSecurityCode = $request->input('cardSecurityCode');
-        $order->user_id = $request->input('user_id');
-        $order->save();
-        return response()->json('Order created',201);
+        $productOrder = new ProductOrder();
+        $productOrder->product_id = $request->input('product_id');
+        $productOrder->order_id = $request->input('order_id');
+        $productOrder->save();
+        return response()->json('ProductOrder created',201);
     }
 
     /**
@@ -45,7 +41,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        return Order::select('id','user_id','user_name','address','cardNumber','cardValidity','cardSecurityCode')->find($id);
+        return ProductOrder::select('id')->find($id);
     }
 
     /**
@@ -61,8 +57,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $order = Order::find($id);
-        $order->update($request->all());
+        $productOrder = ProductOrder::find($id);
+        $productOrder->update($request->all());
         return response()->json('Updated',200);
     }
 

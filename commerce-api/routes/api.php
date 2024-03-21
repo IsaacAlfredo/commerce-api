@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\V1\ProductController;
 use \App\Http\Controllers\Api\V1\OrderController;
+use \App\Http\Controllers\Api\V1\ProductOrderController;
+
 
 
 /*
@@ -29,3 +31,8 @@ Route::get('/orders', [OrderController::class, 'index']);
 Route::get('/orders/{id}',[OrderController::class, 'show']);
 Route::post('/orders/new', [OrderController::class, 'store']);
 Route::put('/orders/update/{id}', [OrderController::class, 'update']);
+
+Route::get('/productOrder', [ProductOrderController::class, 'index']);
+Route::get('/productOrder/{id}',[ProductOrderController::class, 'show']);
+Route::post('/productOrder/new', [ProductOrderController::class, 'store']);
+Route::put('/productOrder/update/{id}', [ProductOrderController::class, 'update']);
