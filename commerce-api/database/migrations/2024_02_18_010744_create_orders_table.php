@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('user_name',100);
+            $table->string('address',100);
+            $table->string('cardNumber',16);
+            $table->string('cardValidity',8);
+            $table->string('cardSecurityCode',3);
+
         });
     }
 

@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \App\Models\Product;
+use \App\Models\ProductOrder;
 
-class ProductController extends Controller
+class ProductOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Product::select('id','name', 'price', 'stock', 'category')->get();
+        return ProductOrder::select('id')->get();
     }
 
     /**
@@ -29,12 +29,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->input('name');
-        $product->price = $request->input('price');
-        $product->stock = $request->input('stock');
-        $product->save();
-        return response()->json('Product created',201);
+        $productOrder = new ProductOrder();
+        $productOrder->product_id = $request->input('product_id');
+        $productOrder->order_id = $request->input('order_id');
+        $productOrder->save();
+        return response()->json('ProductOrder created',201);
     }
 
     /**
@@ -42,7 +41,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        return Product::select('id','name', 'price', 'stock','category')->find($id);
+        return ProductOrder::select('id')->find($id);
     }
 
     /**
@@ -58,9 +57,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        $product = Product::find($id);
-        $product->update($request->all());
+        $productOrder = ProductOrder::find($id);
+        $productOrder->update($request->all());
         return response()->json('Updated',200);
     }
 
