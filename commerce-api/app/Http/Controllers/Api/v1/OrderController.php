@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \App\Models\Product;
+use \App\Models\Order;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Product::select('id','name', 'price', 'stock', 'category')->get();
+        return Order::select('id','user_id','user_name','address','cardNumber','cardValidity','cardSecurityCode')->get();
     }
 
     /**
@@ -29,12 +29,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->input('name');
-        $product->price = $request->input('price');
-        $product->stock = $request->input('stock');
-        $product->save();
-        return response()->json('Product created',201);
+        $order = new Order();
+        $order->user_name = $request->input('user_name');
+        $order->address = $request->input('address');
+        $order->cardNumber = $request->input('cardNumber');
+        $order->cardValidity = $request->input('cardValidity');
+        $order->cardSecurityCode = $request->input('cardSecurityCode');
+        $order->user_id = $request->input('user_id');
+        $order->save();
+        return response()->json(['id' => $order->id], 201);
     }
 
     /**
@@ -42,7 +45,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        return Product::select('id','name', 'price', 'stock','category')->find($id);
+        return Order::select('id','user_id','user_name','address','cardNumber','cardValidity','cardSecurityCode')->find($id);
     }
 
     /**
@@ -58,9 +61,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        $product = Product::find($id);
-        $product->update($request->all());
+        $order = Order::find($id);
+        $order->update($request->all());
         return response()->json('Updated',200);
     }
 
