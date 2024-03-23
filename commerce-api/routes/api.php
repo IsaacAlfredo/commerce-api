@@ -32,7 +32,7 @@ Route::get('/orders/{id}',[OrderController::class, 'show']);
 Route::post('/orders/new', [OrderController::class, 'store']);
 Route::put('/orders/update/{id}', [OrderController::class, 'update']);
 
-Route::get('/productOrder', [ProductOrderController::class, 'index']);
-Route::get('/productOrder/{id}',[ProductOrderController::class, 'show']);
-Route::post('/productOrder/new', [ProductOrderController::class, 'store']);
-Route::put('/productOrder/update/{id}', [ProductOrderController::class, 'update']);
+Route::get('/productOrders', [ProductOrderController::class, 'index']);
+Route::get('/productOrders/{id}',[ProductOrderController::class, 'show']);
+Route::post('/productOrders/new', [ProductOrderController::class, 'store']);
+Route::put('/productOrders/update/{id}', [ProductOrderController::class, 'update']);

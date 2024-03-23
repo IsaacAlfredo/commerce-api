@@ -13,7 +13,7 @@ class ProductOrderController extends Controller
      */
     public function index()
     {
-        return ProductOrder::select('id')->get();
+        return ProductOrder::select('id','product_id','order_id')->get();
     }
 
     /**
@@ -41,7 +41,7 @@ class ProductOrderController extends Controller
      */
     public function show(string $id)
     {
-        return ProductOrder::select('id')->find($id);
+        return ProductOrder::select('id','product_id','order_id')->find($id);
     }
 
     /**

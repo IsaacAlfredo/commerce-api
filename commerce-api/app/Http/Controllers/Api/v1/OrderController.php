@@ -37,7 +37,7 @@ class OrderController extends Controller
         $order->cardSecurityCode = $request->input('cardSecurityCode');
         $order->user_id = $request->input('user_id');
         $order->save();
-        return response()->json('Order created',201);
+        return response()->json(['id' => $order->id], 201);
     }
 
     /**
