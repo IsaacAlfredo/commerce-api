@@ -21,7 +21,7 @@ class OrderFactory extends Factory
         return [
             'user_id' => fake()->numberBetween(1, User::count()),
             'user_name' => fake()->name(),
-            'address' => fake()->text(20),
+            'address' => fake()->numerify('########'),
             'cardNumber' => fake()->numerify('################'),
             'cardValidity' => fake()->numerify('########'),
             'cardSecurityCode' => fake()->numerify('###')
